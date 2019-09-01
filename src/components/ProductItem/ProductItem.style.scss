@@ -1,0 +1,56 @@
+
+.productItem {
+    font-family: 'Muli', sans-serif;
+    width: 300px;
+    height: 400px;
+    margin: 30px;
+    background-color: rgb(255, 153, 0);
+    color: white;
+    align-content: center;
+    justify-content: center;
+    float: left;
+
+    &__title {
+        font-size: 20px;
+        margin-left: 75px;
+    }
+
+    &__description {
+        font-size: 16px;
+        margin-left: 45px;
+        justify-content: center;
+        text-justify: auto;
+    }
+
+    &__image {
+        width: 150px;
+        height: 200px;
+        margin-left: 75px;
+        margin-top:5px;
+    }
+
+    &__button {
+        color: white;
+        flex: 1;
+        background-color: rgb(190, 124, 0);
+        font-size: 18px;
+        margin-top: 15px;
+        margin-left: 75px;
+        width: 150px;
+        padding: 5px;
+        border-style: none;
+        align-self: center;
+    }
+
+    &__button:hover {
+        cursor: pointer;
+        background-color: rgb(124, 81, 0);
+    }
+
+
+}
+
+.productItem:hover {
+    cursor: pointer;
+    background-color: orangered;
+}

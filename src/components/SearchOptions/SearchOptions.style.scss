@@ -1,0 +1,33 @@
+
+.searchOptions {
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 100px;
+    background-color: rgb(190, 108, 0);
+
+    &__input {
+        width: 300px;
+        padding: 10px;
+        margin-left:50px;
+        font-size: 18px;
+    }
+
+    &__button {
+        color: white;
+        flex: 1;
+        background-color: rgb(190, 124, 0);
+        font-size: 20px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        margin-left: 10px;
+        padding: 5px;
+        border-style: none;
+        width: 100px;
+    }
+
+    &__button:hover{
+        cursor: pointer;
+        background-color: rgb(124, 81, 0);
+    }
+    
+}

@@ -27,15 +27,22 @@ class Store extends React.Component {
         })
     }
 
+    addToCart = (item) => {
+        this.setState({
+            cartItems: [item, ...this.state.cartItems]
+        })
+    }
+
     renderProductItem = (item) => {
         console.log(item);
         return(
             <>
                 <ProductItem 
-                item={item}
+                key={item.id}
                 title="Yerba Mate 250g" 
                 description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
                 photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
+                addToCart = {() => this.addToCart(item.id)}
                 />
             </>
         )
@@ -49,52 +56,60 @@ class Store extends React.Component {
                 <div className="store__content">
                     <SearchOptions/>
                     {this.getItemsList()}
-                    <ProductItem 
+                    <ProductItem
+                        key="1" 
+                        title="Yerba Mate 250g" 
+                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
+                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
+                        addToCart = {() => this.addToCart("1")}
+                    />
+                    <ProductItem
+                        key="2"  
+                        title="Yerba Mate 250g" 
+                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
+                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
+                        addToCart = {() => this.addToCart("2")}
+                    />
+                    <ProductItem
+                        key="3"  
+                        title="Yerba Mate 250g" 
+                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
+                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
+                        addToCart = {() => this.addToCart("3")}
+                    />
+                    <ProductItem
+                        key="4" 
+                        title="Yerba Mate 250g" 
+                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
+                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
+                        addToCart = {() => this.addToCart("4")}
+                    />
+                    <ProductItem
+                        key="5"  
                         title="Yerba Mate 250g" 
                         description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
                         photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
                     />
-                    <ProductItem 
+                    <ProductItem
+                        key="6"  
                         title="Yerba Mate 250g" 
                         description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
                         photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
                     />
-                    <ProductItem 
+                    <ProductItem
+                        key="7" 
                         title="Yerba Mate 250g" 
                         description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
                         photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
                     />
-                    <ProductItem 
+                    <ProductItem
+                        key="8"  
                         title="Yerba Mate 250g" 
                         description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
                         photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
                     />
-                    <ProductItem 
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem 
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem 
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem 
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem 
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem 
+                    <ProductItem
+                        key="9"  
                         title="Yerba Mate 250g" 
                         description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
                         photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"

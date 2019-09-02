@@ -5,10 +5,24 @@ import CartIcon from "../../assets/shoppingCart.png"
 class UpperBar extends React.Component {
 
     state = ({
-
+        displayCartItems: false
     })
 
+    showCartItems = () => {
+        this.setState({displayCartItems: !this.state.displayCartItems})
+    }
+
+    sumPrices = () => {
+        let sum = 0;
+        this.props.cartItems.map(item => {
+            sum += item;
+        })
+
+        return sum;
+    }
+
     render () {
+        const {displayCartItems} = this.state;
         return(
             <div className="upperBar">
                 <h1 className="upperBar__title">MateStore</h1>
@@ -16,13 +30,25 @@ class UpperBar extends React.Component {
                 <div className="upperBar__buttons">
                     <button className="upperBar__buttons__button">Login</button>
                     <button className="upperBar__buttons__button">Sign Up</button>
-                    <button className="upperBar__buttons__cartButton">
+                    <button className="upperBar__buttons__cartButton" onClick={this.showCartItems}>
                     Your Cart
                     {<>
-                        <img className="upperBar__cart" src={CartIcon}/>
-                        <div className="upperBar__counter">0</div>
+                        <img className="upperBar__cartIcon" src={CartIcon}/>
+                        <div className="upperBar__counter">{this.props.cartItems.length}</div>
                     </>}
                     </button>
+                    {displayCartItems ? 
+                        <div className="upperBar__cart">
+                            {this.props.cartItems.map(item => {
+                                console.log(item);
+                                return(
+                                    <div className="upperBar__cart__item">{item}</div>
+                                )
+                            })}
+                            <div className="upperBar__cart__totalPrice">Total price: {this.sumPrices()}EUR</div>
+                            <button className="upperBar__cart__submit">Buy</button>
+                        </div>
+                        : null}
                 </div>
             </div>
         );

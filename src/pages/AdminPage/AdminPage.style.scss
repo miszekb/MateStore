@@ -1,0 +1,76 @@
+.adminPage {
+    margin-top: 100px;
+    font-family: 'Muli', sans-serif;
+    margin-left: 20%;
+
+    &__title {
+        font-size: 400%;
+        color: rgb(117, 69, 30);
+    }
+
+    &__welcomePrompt {
+        font-size: 30px;
+        color: black;
+        float:left;
+    }
+
+    &__currentAction {
+        width: 600px;
+        max-height: 800px;
+        margin-top: 100px;
+    }
+
+    &__usersList {
+        color: white;
+        background-color: rgb(228, 196, 138);
+        padding: 10px;
+        float: left;
+        width: 600px;
+
+        &__user {
+            background-color: orange;
+            font-size: 20px;
+            padding:10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__productsList {
+        color: white;
+        background-color: rgb(228, 196, 138);
+        padding: 10px;
+        float: left;
+        width: 600px;
+
+        &__product {
+            background-color: orange;
+            font-size: 20px;
+            padding:10px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+
+    &__actionsMenu {
+        font-size: 20px;
+        color: white;
+        float: left;
+        width: 200px;
+        margin-left: 100px;
+        background-color: orange;
+        padding: 10px;
+
+        &__actionButton {
+            width: 200px;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-size: 20px;
+        }
+
+        &__actionButton:hover {
+            cursor: pointer;
+        }
+    }
+}

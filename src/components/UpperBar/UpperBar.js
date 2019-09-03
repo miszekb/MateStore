@@ -1,6 +1,7 @@
 import "./UpperBar.style.scss"
 import React from "react";
 import CartIcon from "../../assets/shoppingCart.png"
+import {Link} from "react-router-dom";
 
 class UpperBar extends React.Component {
 
@@ -25,7 +26,7 @@ class UpperBar extends React.Component {
         const {displayCartItems} = this.state;
         return(
             <div className="upperBar">
-                <h1 className="upperBar__title">MateStore</h1>
+                <Link to="/" style={{textDecoration: "none"}}><h1 className="upperBar__title">MateStore</h1></Link>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Leaf_icon_15.svg/1003px-Leaf_icon_15.svg.png" width="40" height="40"/>
                 <div className="upperBar__buttons">
                     <button className="upperBar__buttons__button">Login</button>

@@ -16,7 +16,7 @@ class UpperBar extends React.Component {
     sumPrices = () => {
         let sum = 0;
         this.props.cartItems.map(item => {
-            sum += item;
+            sum += item.price;
         })
 
         return sum;
@@ -43,7 +43,11 @@ class UpperBar extends React.Component {
                             {this.props.cartItems.map(item => {
                                 console.log(item);
                                 return(
-                                    <div className="upperBar__cart__item">{item}</div>
+                                    <div className="upperBar__cart__item">
+                                    <button onClick={() => this.props.removeFromCart(item.id)} style={{marginRight: 10}}>X</button>
+                                        {item.name} 
+                                        {item.price}
+                                    </div>
                                 )
                             })}
                             <div className="upperBar__cart__totalPrice">Total price: {this.sumPrices()}EUR</div>

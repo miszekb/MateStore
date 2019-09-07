@@ -41,7 +41,7 @@
         background-color: rgb(228, 196, 138);
         padding: 10px;
         float: left;
-        width: 600px;
+        width: 800px;
 
         &__product {
             background-color: orange;
@@ -49,6 +49,20 @@
             padding:10px;
             margin-top: 10px;
             margin-bottom: 10px;
+        }
+
+        &__removeButton {
+            background-color: rgb(90, 62, 11);
+            border-style: none;
+            color: white;
+            margin-left: 50px;
+            padding: 8px;
+            font-size: 15px;
+        }
+
+        &__removeButton:hover {
+            cursor: pointer;
+            background-color: rgb(61, 43, 8);
         }
     }
 

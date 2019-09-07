@@ -4,6 +4,9 @@ import UpperBar from "../../components/UpperBar/UpperBar";
 import ProductItem from "../../components/ProductItem/ProductItem";
 import SearchOptions from "../../components/SearchOptions/SearchOptions";
 
+import {db} from "../../config";
+let productsRef = db.ref("/Products");
+
 class Store extends React.Component {
 
     state = ({
@@ -11,109 +14,43 @@ class Store extends React.Component {
         shopItems: []
     })
 
-    //just for testing
     componentDidMount = async () => {
-        let bufferArray = [];
-        for(let i=0;i<15;i++) {
-            bufferArray.push(i);
-        }
-
-        await this.setState({shopItems: bufferArray})
-    }
-
-    getItemsList = () => {
-        this.state.shopItems.map( (item) => {
-            this.renderProductItem(item);
+        productsRef.on("value", async snapshot => {
+            let data = snapshot.val();
+            if (data !== undefined && data !== null) {
+                let products = Object.values(data);
+                await this.setState({shopItems: products});
+            }
         })
     }
 
-    addToCart = (item) => {
-        this.setState({
-            cartItems: [item, ...this.state.cartItems]
-        })
-    }
+    addToCart = (item) => {this.setState({cartItems: [item, ...this.state.cartItems]})}
+    removeFromCart = (id) => {this.setState({cartItems: this.state.cartItems.filter(item => item.id !== id )})}
 
     renderProductItem = (item) => {
         console.log(item);
         return(
-            <>
                 <ProductItem 
-                key={item.id}
-                title="Yerba Mate 250g" 
-                description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                addToCart = {() => this.addToCart(item.id)}
+                    key={item.id}
+                    title={item.name} 
+                    description={item.description}
+                    photo={item.image}
+                    price={item.price}
+                    addToCart = {() => this.addToCart(item)}
                 />
-            </>
         )
     }
 
     render() {
-        const {cartItems} = this.state;
+        const {cartItems, shopItems} = this.state;
         return(
             <div className="store">
-                <UpperBar cartItems={cartItems}/>
+                <UpperBar cartItems={cartItems} removeFromCart={this.removeFromCart}/>
                 <div className="store__content">
                     <SearchOptions/>
-                    {this.getItemsList()}
-                    <ProductItem
-                        key="1" 
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                        addToCart = {() => this.addToCart("1")}
-                    />
-                    <ProductItem
-                        key="2"  
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                        addToCart = {() => this.addToCart("2")}
-                    />
-                    <ProductItem
-                        key="3"  
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                        addToCart = {() => this.addToCart("3")}
-                    />
-                    <ProductItem
-                        key="4" 
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                        addToCart = {() => this.addToCart("4")}
-                    />
-                    <ProductItem
-                        key="5"  
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem
-                        key="6"  
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem
-                        key="7" 
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem
-                        key="8"  
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
-                    <ProductItem
-                        key="9"  
-                        title="Yerba Mate 250g" 
-                        description="Mmm pyszna yerbka mniam mniam polecam Mateusz Borek" 
-                        photo="https://image.ceneostatic.pl/data/products/7374914/i-argentyna-limited-500g-el-gaucho-argentina-yerba-mate.jpg"
-                    />
+                    {shopItems.map( (item) => {
+                        return this.renderProductItem(item);
+                    })}
                 </div>
             </div>
         );
